@@ -17,7 +17,7 @@ The SQL queries used to inspect and clean the data can be found here: [data_clea
 
 The SQL queries used for the analysis and the risk view can be found here: [telco_customer_churn_analysis.sql](./sql/telco_customer_churn_analysis.sql)
 
-The Power BI file can be found here: [Telco Customer Churn Analysis.pbix](./PowerBI/Telco_Customer_Churn_Analysis)
+The Power BI file can be found here: [Telco Customer Churn Analysis.pbix](./PowerBI/Telco_Customer_Churn_Analysis.pbix)
 
 # Data Structure & Initial Checks
 
