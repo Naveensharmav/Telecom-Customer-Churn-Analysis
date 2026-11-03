@@ -17,6 +17,8 @@ The SQL queries used to inspect and clean the data can be found here: [data_clea
 
 The SQL queries used for the analysis and the risk view can be found here: [telco_customer_churn_analysis.sql](./sql/telco_customer_churn_analysis.sql)
 
+The Kaggle Telco Customer Churn dataset is [here](https://www.kaggle.com/datasets/blastchar/telco-customer-churn).
+
 The Power BI file can be found here: [Telco Customer Churn Analysis.pbix](./PowerBI/Telco_Customer_Churn_Analysis.pbix)
 
 # Data Structure & Initial Checks
@@ -143,8 +145,24 @@ Churn rate by contract and internet service:
 
 ### Risk segmentation
 
-* **How the score works.** Each customer gets points out of 12: month-to-month contract (2), tenure 0 to 6 months (2), 7 to 12 months (1), 13 to 24 months (1), Fiber optic (2), electronic check (2), no tech support (2) and senior citizen (2). A total of 0 to 3 is Low, 4 to 7 is Medium and 8 to 12 is High. The points are my own rules based on the patterns above, not a fitted model.
+* **How the score works.** Points come from each group's churn rate in the analysis above: 40% or more earns 2 points, 25% to 39.99% earns 1 point and below 25% earns 0. Only the risky group of each factor scores. The maximum score is 12.
 
+<div align="center">
+
+| Factor | Risky group | Churn rate | Points |
+|---|---|---|---|
+| Contract | Month-to-month | 42.71% | 2 |
+| Tenure | 0 to 6 months | 52.94% | 2 |
+| Tenure | 7 to 12 months | 35.89% | 1 |
+| Tenure | 13 to 24 months | 28.71% | 1 |
+| Internet service | Fiber optic | 41.89% | 2 |
+| Payment method | Electronic check | 45.29% | 2 |
+| Tech support | No | 41.64% | 2 |
+| Senior citizen | Yes | 41.68% | 2 |
+
+</div>
+ 
+A total of 0 to 3 is Low, 4 to 7 is Medium and 8 to 12 is High. Gender, partner, dependents, online security, paperless billing and total charges are not scored, because they are weak or overlap with factors already in the score. These are rules I chose, not a fitted model.
 * **707 active customers are High Risk.** The split of active customers is 2,599 Low, 1,868 Medium and 707 High. The High group holds $57,354.80 of monthly revenue, which is 18.09% of all active monthly revenue, or about $688K a year.
 
 * **The High Risk group is very uniform.** Almost all of the 707 are on month-to-month contracts and have no tech support, and most are on Fiber and pay by electronic check (see the table below).
